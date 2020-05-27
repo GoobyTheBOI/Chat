@@ -34,6 +34,10 @@ const tech = io.of('/tech');
 tech.on("connection", (socket) => {
     socket.on('join', (data) => {
         socket.join(data.room);
+
+        let test = db.getChat;
+
+        console.log(test)
         
         tech.in(data.room).emit('message', `New user joined ${data.room} room`);
     })
