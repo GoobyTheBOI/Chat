@@ -1,0 +1,14 @@
+.menu{
+    height: 141px;
+    display: flex;
+    align-items: center;
+    background-color: #1F1F1F;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+    &__title{
+        font-family: Arial, sans-serif;
+        color: #fff;
+        padding-left: 95px;
+    }
+}

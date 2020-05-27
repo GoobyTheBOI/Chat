@@ -1,5 +1,44 @@
-$body-color: red;
+@import './menu';
 
-body {
-  background-color: $body-color;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-el{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 206px;
+
+
+  .nickname{
+    width: 50%;
+    float: left;
+    padding-top: 71px;
+
+    &__input{
+      background: url(../img/login-button.png);
+      background-repeat: no-repeat;
+      background-position: right;
+      border: none;
+      border-radius: 25px;
+      background-color: #3C3C3C;
+      color: #fff;
+      height: 34px;
+      padding: 24px;
+      width: 371px;
+    }
+  }
+
+  .information{
+      height: 229pt;
+      font-family: Arial, sans-serif;
+      color: #606060;
+      font-size: 33px;
+    }
+}
+
+body{
+  background-color: #E3E3E3;
 }

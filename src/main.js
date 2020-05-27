@@ -1,2 +1,2 @@
 import './scss/style.scss';
-alert('This is commander Ecma, reporting for duty!');
+import './img/login-button.png';
