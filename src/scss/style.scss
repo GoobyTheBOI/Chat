@@ -1,4 +1,5 @@
 @import './menu';
+@import './footer';
 
 *{
   margin: 0;
@@ -10,6 +11,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding-top: 206px;
+  min-height: calc(100vh - 141px - 108px);
 
 
   .nickname{
@@ -30,15 +32,46 @@
       width: 371px;
     }
   }
+  .change{
+    width: 49%;  
+    float: left;
 
-  .information{
-      height: 229pt;
-      font-family: Arial, sans-serif;
-      color: #606060;
-      font-size: 33px;
-    }
+    .information{
+        font-family: Arial, sans-serif;
+        color: #606060;
+        font-size: 33px;
+      }
+  }
 }
 
 body{
   background-color: #E3E3E3;
+}
+
+@media screen and (max-width: 1200px){
+  .container-el{
+    padding-top: 0px;
+  }
+
+  body{
+    background-color: #292929
+  }
+
+  .nickname{
+    float: none !important;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 77px;
+  }
+
+  .change{
+    float: none !important;
+    margin: 0 auto;
+
+    .information{
+      font-size: 20px !important;
+    }
+  }
 }
