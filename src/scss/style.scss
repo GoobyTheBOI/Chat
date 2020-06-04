@@ -1,4 +1,6 @@
 @import './menu';
+@import './chatrooms';
+@import './users';
 @import './footer';
 
 *{
@@ -10,14 +12,13 @@
 .container-el{
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 206px;
   min-height: calc(100vh - 141px - 108px);
 
 
   .nickname{
     width: 50%;
     float: left;
-    padding-top: 71px;
+    padding-top: 277px;
 
     &__input{
       background: url(../img/login-button.png);
@@ -35,6 +36,7 @@
   .change{
     width: 49%;  
     float: left;
+    padding-top: 206px;
 
     .information{
         font-family: Arial, sans-serif;

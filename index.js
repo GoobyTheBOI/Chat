@@ -8,7 +8,8 @@ const db = require('./queries');;
 
 server.listen(port, () => {
     console.log(`Server is running on ${port}`);
-})
+});
+
 
 // Als je request aanvraagd return hij de index
 app.get('/', (req, res) => {
@@ -16,7 +17,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/javascript', (req, res) => {
-    res.sendFile(__dirname + '/public/javascript.html')
+    res.sendFile(__dirname + '/public/chatroom.html')
 });
 
 app.get('/swift', (req, res) => {

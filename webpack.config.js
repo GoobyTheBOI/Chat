@@ -1,12 +1,18 @@
 const path = require("path");
 const webpack = require("webpack");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+var extractPlugin = new ExtractTextPlugin({
+    filename: 'main.css'
+});
 
 module.exports = {
   mode: "development",
   entry: { main: "./src/main.js" },
   output: {
-    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "public"),
+    filename: "[name].bundle.js",
+    // publicPath: '/dist'
   },
   devServer: {
     contentBase: path.join(__dirname, "public"),
@@ -31,24 +37,27 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
-          // Creates `style` nodes from JS strings
-          'style-loader',
-          // Translates CSS into CommonJS
-          'css-loader',
-          // Compiles Sass to CSS
-          'sass-loader',
-        ],
+        use: extractPlugin.extract({
+          use: ["css-loader", "sass-loader"],
+        }),
       },
       {
-         test: /\.(png|svg|jpg|gif)$/,
-         use: [
-           'file-loader',
-         ],
-       },
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "img/",
+              publicPath: "img/",
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
     new webpack.WatchIgnorePlugin([path.join(__dirname, "node_modules")]), // Ignore node_modules so CPU usage with poll watching drops significantly.
+    extractPlugin,
   ],
 };
