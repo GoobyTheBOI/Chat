@@ -1,0 +1,86 @@
+.menu{
+    height: 141px;
+    display: flex;
+    align-items: center;
+    background-color: #1F1F1F;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+    #hamburger{
+        display: none;
+    }
+
+
+    &__title{
+        font-family: Arial, sans-serif;
+        color: #fff;
+        padding-left: 95px;
+    }
+
+    &__nickname{
+        padding-left: 21px;
+        color: #838383;
+        font-family: Arial, sans- serif;
+        font-size: 13px;
+    }
+
+    &__flex-end{
+        display: flex;
+        width: 73%;
+        justify-content: flex-end;
+    }
+
+    &__button{
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        margin-right: 15px;
+
+        &-background{
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 50px;
+
+            &--rooms{
+                background-image: url(../img/message-square.png);
+            }
+
+            &--quit{
+                background-image: url(../img/sign-out-alt-solid-white.png);
+            }
+
+            &--users{
+                background-image: url(../img/users-white.png);
+            }
+        }
+
+        &--blue{
+            background-color: #1a78d0;
+            color: #fff;
+        }
+
+        &--active{
+           background-color: #cccccc;
+            color: #000; 
+        }
+    }
+}
+
+@media screen and (max-width: 1200px){
+    .menu{
+        justify-content: center;
+        flex-direction:  column;
+
+        &__nickname{
+            padding-left: 0;
+            padding-top: 10px;
+        }
+        &__title{
+            padding-left: 0;
+        }
+
+        &__hide{
+            display: none;
+        }
+    }
+}

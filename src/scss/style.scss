@@ -1,0 +1,80 @@
+@import './menu';
+@import './chatrooms';
+@import './users';
+@import './footer';
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-el{
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: calc(100vh - 141px - 108px);
+
+
+  .nickname{
+    width: 50%;
+    float: left;
+    padding-top: 277px;
+
+    &__input{
+      background: url(../img/login-button.png);
+      background-repeat: no-repeat;
+      background-position: right;
+      border: none;
+      border-radius: 25px;
+      background-color: #3C3C3C;
+      color: #fff;
+      height: 34px;
+      padding: 24px;
+      width: 371px;
+    }
+  }
+  .change{
+    width: 49%;  
+    float: left;
+    padding-top: 206px;
+
+    .information{
+        font-family: Arial, sans-serif;
+        color: #606060;
+        font-size: 33px;
+      }
+  }
+}
+
+body{
+  background-color: #E3E3E3;
+}
+
+@media screen and (max-width: 1200px){
+  .container-el{
+    padding-top: 0px;
+
+      .change{
+      float: none;
+      margin: 0 auto;
+      padding-top: 0;
+
+      .information{
+        font-size: 20px;
+      }
+    }
+  }
+
+  body{
+    background-color: #292929
+  }
+
+  .nickname{
+    float: none !important;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 77px;
+  }
+}
