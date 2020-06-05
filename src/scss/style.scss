@@ -53,6 +53,16 @@ body{
 @media screen and (max-width: 1200px){
   .container-el{
     padding-top: 0px;
+
+      .change{
+      float: none;
+      margin: 0 auto;
+      padding-top: 0;
+
+      .information{
+        font-size: 20px;
+      }
+    }
   }
 
   body{
@@ -66,14 +76,5 @@ body{
     justify-content: center;
     padding-top: 50px;
     padding-bottom: 77px;
-  }
-
-  .change{
-    float: none !important;
-    margin: 0 auto;
-
-    .information{
-      font-size: 20px !important;
-    }
   }
 }

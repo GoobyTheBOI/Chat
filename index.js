@@ -1,5 +1,6 @@
 // Run express instant
-const app = require('express')();
+const express = require('express');;
+const app =express();
 //Maakt server aan
 const server =  require('http').Server(app);
 const io = require('socket.io')(server);
@@ -10,6 +11,7 @@ server.listen(port, () => {
     console.log(`Server is running on ${port}`);
 });
 
+app.use(express.static('public'));
 
 // Als je request aanvraagd return hij de index
 app.get('/', (req, res) => {
@@ -17,7 +19,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/javascript', (req, res) => {
-    res.sendFile(__dirname + '/public/chatroom.html')
+    res.sendFile(__dirname + '/public/javascript.html')
 });
 
 app.get('/swift', (req, res) => {
@@ -26,6 +28,14 @@ app.get('/swift', (req, res) => {
 
 app.get('/css', (req, res) => {
     res.sendFile(__dirname + '/public/css.html')
+});
+
+app.get('/users', (req, res) => {
+    res.sendFile(__dirname + '/public/users.html')
+});
+
+app.get('/chatrooms', (req, res) => {
+    res.sendFile(__dirname + '/public/chatroom.html')
 });
 
 // Namespace voor chatrooms

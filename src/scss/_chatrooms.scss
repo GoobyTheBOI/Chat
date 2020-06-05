@@ -82,7 +82,7 @@ a{
 
         .messages{
             list-style: none;
-            padding: 10px;
+            // padding: 10px;
             width: 50%;
             float: left;
 
@@ -92,6 +92,7 @@ a{
                 border-top-left-radius: 10px;
                 border-bottom-left-radius: 10px;
                 background-color: #313131;
+
 
                 &-margin-top{
                     margin-top: 86px;
@@ -103,9 +104,11 @@ a{
                 border-top-left-radius: 10px;
                 border-bottom-right-radius: 10px;
                 background-color: #1379db;
+                margin-top: 10px;
+
 
                 &-margin-top{
-                    margin-top: 43px;
+                    margin-top: 33px;
                 }
             }
             
@@ -114,6 +117,7 @@ a{
         &__message{
             font-family: Arial, sans-serif;
             color: #fff;
+            padding: 10px;
         }
 
         &__users{
