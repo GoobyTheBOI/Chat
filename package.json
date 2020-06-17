@@ -4,7 +4,7 @@
   "description": "School opdracht",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./index.js  --exec",
+    "start": "node ./index.js  --exec",
     "start-dev": "nodemon --watch webpack.config.js --exec \"node_modules/.bin/webpack-dev-server --mode development\"",
     "build:prod": "webpack -p",
     "build": "webpack -w --mode production",
@@ -35,7 +35,7 @@
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
     "node-sass": "^4.14.1",
-    "nodemon": "^2.0.3",
+    "nodemon": "^2.0.4",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
