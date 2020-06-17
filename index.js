@@ -5,7 +5,7 @@ const app =express();
 const server =  require('http').Server(app);
 const io = require('socket.io')(server);
 const port = process.env.PORT || 3000;
-const db = require('./queries');;
+const db = require('./queries');
 
 server.listen(port, () => {
     console.log(`Server is running on ${port}`);
@@ -19,15 +19,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/javascript', (req, res) => {
-    res.sendFile(__dirname + '/public/javascript.html')
+    res.sendFile(__dirname + '/public/chatroom.html')
 });
 
 app.get('/swift', (req, res) => {
-    res.sendFile(__dirname + '/public/swift.html')
+    res.sendFile(__dirname + '/public/chatroom.html')
 });
 
 app.get('/css', (req, res) => {
-    res.sendFile(__dirname + '/public/css.html')
+    res.sendFile(__dirname + '/public/chatroom.html')
 });
 
 app.get('/users', (req, res) => {
@@ -41,34 +41,38 @@ app.get('/chatrooms', (req, res) => {
 // Namespace voor chatrooms
 const tech = io.of('/tech');
 
+
 // Als er een event is
 tech.on("connection", (socket) => {
     socket.on('join', (data) => {
         socket.join(data.room);
+        socket.join(data.users);
 
-        let test = db.getChat;
-
-        console.log(test)
+        db.getChat(data.room).then(val => {
+            tech.to(socket.id).emit('historyMessage', val);
+        })
         
-        tech.in(data.room).emit('message', `New user joined ${data.room} room`);
-    })
+        db.getUser(data.users).then(() => {
+            tech.to(socket.id).emit('users', [{user: data.users}]);
+        })
+    });
 
-    socket.on("message", (data) => {
-        console.log(`message: ${data.msg}`);
+    socket.on("singleMessage", (data) => {
 
         var message = {
-            name: "Hans",
-            room: data.room,
+            name: `${data.username}`,
+            room: data.rooms,
             text: data.msg
         }
-
         let insert = db.insertChat(message);
-        console.log(data);
-        tech.in(data.room).emit("message", `${message.name}: ${data.msg}`);
+        // tech.in(data.rooms).emit("message", `${message.name}: ${data.msg}`);
+        console.log(data)
+        tech.in(data.rooms).emit("singleMessage", { username: data.username, msg: data.msg, time: data.time});
     });
+
 
     socket.on("disconnect", () => {
         console.log("User disconnected");
-        tech.emit("message", "User disconnected");
+        // tech.emit("singleMessage", "User disconnected");
     });
 });

@@ -14,6 +14,11 @@ a{
             margin-top: 65px;
         }
 
+        &__hover{
+            :hover{
+                background-color: #0f7be0;
+            }
+        }
 
         &__chatroom{
             width: 377px;
@@ -24,12 +29,12 @@ a{
             border-bottom-left-radius: 10px;
             margin-top: 10px;
 
-            &--blue{
-                background-color: #0f7be0;
-            }
-
             &--light-gray{
                 background-color: #515151;
+            }
+
+            &--blue{
+                background-color: #0f7be0;
             }
 
             &_title{
@@ -79,19 +84,34 @@ a{
         padding-left: 36px;
         padding-top: 25px;
         padding-right: 42px;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column-reverse;
 
         .messages{
             list-style: none;
-            // padding: 10px;
-            width: 50%;
-            float: left;
+            min-height: inherit;
+            padding-bottom: 10px;
+            display: flex;
+            flex-direction: column;
 
+            .flex-end{
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            &__text{
+                display: flex;
+                align-items: center;
+            }
 
             &--send{
                 border-top-right-radius:10px;
                 border-top-left-radius: 10px;
                 border-bottom-left-radius: 10px;
                 background-color: #313131;
+                width: 67%;
+                align-self: flex-end;
 
 
                 &-margin-top{
@@ -104,7 +124,7 @@ a{
                 border-top-left-radius: 10px;
                 border-bottom-right-radius: 10px;
                 background-color: #1379db;
-                margin-top: 10px;
+                width: 67%;
 
 
                 &-margin-top{
@@ -173,8 +193,13 @@ a{
 
 
 @media screen and (max-width: 1201px){
-    .chatarea{
-        display: none;
+    .container-chatrooms{
+        .chatarea{
+            display: none;
+            float: none;
+            width: 100%;
+            background-color: #292929;
+        }
     }
 
     .chatrooms-background{
