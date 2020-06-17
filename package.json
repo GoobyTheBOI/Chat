@@ -7,7 +7,7 @@
     "start": "node ./index.js  --exec",
     "start-dev": "nodemon --watch webpack.config.js --exec \"node_modules/.bin/webpack-dev-server --mode development\"",
     "build:prod": "webpack -p",
-    "build": "webpack -w --mode production",
+    "build": "webpack --mode production",
     "test": "nodemon ./index.js --exec babel-node -e js",
     "debug": "set DEBUG=* & nodemon ./index.js  --exec babel-node -e js",
     "jagoed": "concurrently \"npm run test\" \"npm run build\""
