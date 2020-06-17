@@ -9,6 +9,7 @@
   box-sizing: border-box;
 }
 
+
 .container-el{
   max-width: 1200px;
   margin: 0 auto;
@@ -21,9 +22,6 @@
     padding-top: 277px;
 
     &__input{
-      background: url(../img/login-button.png);
-      background-repeat: no-repeat;
-      background-position: right;
       border: none;
       border-radius: 25px;
       background-color: #3C3C3C;
@@ -31,6 +29,19 @@
       height: 34px;
       padding: 24px;
       width: 371px;
+    }
+
+    &__flex-box{
+      display: flex;
+    }
+
+    &__button{
+      border: none;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      margin-left: -50px;
+      cursor: pointer;
     }
   }
   .change{
@@ -43,6 +54,13 @@
         color: #606060;
         font-size: 33px;
       }
+  }
+
+  .message_failed{
+    padding: 10px;
+    padding-left: 20px;
+    font-family: Arial, sans-serif;
+    color: #FF6464;
   }
 }
 
@@ -63,18 +81,18 @@ body{
         font-size: 20px;
       }
     }
+
+    .nickname{
+      float: none !important;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      padding-top: 50px;
+      padding-bottom: 77px;
+    }
   }
 
   body{
     background-color: #292929
-  }
-
-  .nickname{
-    float: none !important;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    padding-top: 50px;
-    padding-bottom: 77px;
   }
 }
