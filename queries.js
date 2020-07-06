@@ -1,4 +1,5 @@
 const pg = require('pg');
+const { request } = require('express');
 const process_db = require("dotenv").config();
 const db_url = process.env.DATABASE_URL || process_db.parsed.DB_URL;
 const client = new pg.Client({
@@ -16,7 +17,6 @@ const insertChat = (request) => {
         if(error){
             throw error;
         }
-        console.log(`Chat added to Room: ${data.room}`);
     });
 }
 
@@ -33,21 +33,79 @@ const getChat = (roomName) => {
     })
 }
 
-const getUser = (user) => {
+const getUser = () => {
     return new Promise((resolve, reject) => {
 
-        client.query(`SELECT * FROM chats WHERE user_name = '${user}' ORDER BY date_time ASC LIMIT 20`)
-            .then((result) => {
-                let data = result.rows;
-                resolve(data);
-            })
-            .catch((e) => console.error(e.stack));
+        client.query(`SELECT user_name, status FROM users ORDER BY username_id DESC LIMIT 20`)
+          .then((result) => {
+            let data = result.rows;
+            resolve(data);
+          })
+          .catch((e) => console.error(e.stack));
     })
+}
+
+
+const status = (request) => {
+  const data = request;
+
+  client.query(`UPDATE users SET status = '${data.status}' WHERE user_name = '${data.username}'`,
+    (error, result) => {
+      if (error) {
+        throw error;
+      }
+    })
+}
+
+
+const checkUser = (request) => {
+  const data = request;
+  return new Promise((resolve, reject) => {
+    client.query(`SELECT user_name FROM users`)
+      .then((results) => {
+        const result = results.rows;
+        if (result.some(user => user.user_name == data) || data == '') {
+          resolve(false);
+        } else {
+          resolve(true);
+        }
+
+        resolve(data);
+      })
+      .catch((e) => console.error(e.stack));
+  })
+}
+
+const insertUser = (request) => {
+  const data = request;
+  client.query(
+    "INSERT INTO users (user_name, status) VALUES ($1, $2)",
+    [data.user, data.status], (error, result) => {
+      if (error) {
+        throw error;
+      }
+    }
+  );
+};
+
+const deleteUser = (request) => {
+  const data = request;
+
+  client.query(`DELETE FROM users WHERE user_name = '${data}'`,
+    (error, result) => {
+      if (error) {
+        throw error;
+      }
+    });
 }
 
 
 module.exports = {
     getChat,
     insertChat,
-    getUser
+    getUser,
+    insertUser,
+    checkUser,
+    deleteUser,
+    status
 }

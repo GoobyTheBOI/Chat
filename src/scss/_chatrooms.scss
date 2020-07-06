@@ -88,12 +88,19 @@ a{
         display: flex;
         flex-direction: column-reverse;
 
+        #message-history{
+            flex-direction: column-reverse;
+        }
+
+        #message{
+            flex-direction: column;
+        }
+
         .messages{
             list-style: none;
             min-height: inherit;
             padding-bottom: 10px;
             display: flex;
-            flex-direction: column;
 
             .flex-end{
                 display: flex;
@@ -101,8 +108,8 @@ a{
             }
 
             &__text{
-                display: flex;
-                align-items: center;
+                min-height: 18px;
+                word-wrap: break-word;
             }
 
             &--send{

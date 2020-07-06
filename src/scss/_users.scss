@@ -93,27 +93,25 @@
             font-family: Arial, sans-serif;
             list-style: none;
 
-            ::before{
-                content: ""; 
-                display: inline-block; 
+            &-name{
+                display: flex;
+                align-items: center;
+            }
+
+            &-dot{
+                display: flex;
                 width: 12px;
                 height: 12px;
                 border: 1px solid black;
-                background-color: #0fdc66;
                 border-radius: 100%;
-                margin-left: -1em;
                 margin-right: 12px;
-            }
-
-            &-name{
-                padding-bottom: 18px;
 
                 &--online{
-                    
+                    background-color: #0fdc66;
                 }
 
-                ::before{
-                    content: none;
+                &--absent{
+                    background-color: #FFB91C;
                 }
             }
 
