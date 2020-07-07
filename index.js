@@ -145,15 +145,16 @@ tech.on("connection", (socket) => {
 
     socket.on("singleMessage", (data) => {
         // console.log(data)
+        let encode_message = data.msg.replace(/</g, "&lt;").replace(/>/g, "&gt;");
         var message = {
             name: `${data.username}`,
             room: data.rooms,
-            text: data.msg
+            text: encode_message
         }
         db.insertChat(message);
         // console.log(data.username)
         // tech.in(data.rooms).emit("message", `${message.name}: ${data.msg}`);
-        tech.in(data.rooms).emit("singleMessage", { username: data.username, msg: data.msg, time: data.time});
+        tech.in(data.rooms).emit("singleMessage", { username: data.username, msg: encode_message, time: data.time});
     });
 
 

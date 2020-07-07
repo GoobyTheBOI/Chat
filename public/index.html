@@ -54,6 +54,10 @@
                                     window.location.href = "/chatrooms";
                                 }
                             });
+                        }else if(username == null || username == ""){
+                            $(".message_failed").html(
+                                "<div>Input is empty. Try again.</div>"
+                            );
                         }else{
                             $(".message_failed").html(
                                 "<div>This nickname already exists. Try another.</div>"
