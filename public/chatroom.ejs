@@ -121,8 +121,12 @@
                 let date = new Date()
                 let time = getTime(date)
                 //return data, wordt in de id 'm' gezet en de room
-                socket.emit("singleMessage", { msg, rooms, username, time });
-                $("#m").val('');
+                if(msg == null || msg == ""){
+                    return false
+                }else{
+                    socket.emit("singleMessage", { msg, rooms, username, time });
+                    $("#m").val('');
+                }
                 return false;
             });
             
@@ -145,9 +149,9 @@
             //veranderd de html naar de message
             socket.on('singleMessage', (msg) => {
                 if (msg.username == username) {
-                    $('#message').append($('<li class="chatarea__message messages--send messages--send-margin-top" ></li>').html(`<p>${msg.username}:</p> <p class='messages__text'>${msg.msg}</p><p class='flex-end'>${msg.time}</p>`));
+                    $('#message').append($('<li class="chatarea__message messages--received messages--send-margin-top" ></li>').html(`<p>${msg.username}:</p> <p class='messages__text'>${msg.msg}</p><p class='flex-end'>${msg.time}</p>`));
                 }else{
-                    $('#message').append($('<li class="chatarea__message messages--received messages--send-margin-top"></li>').html(`<p>${msg.username}:</p> <p class='messages__text'>${msg.msg}</p><p class='flex-end'>${msg.time}</p>`));
+                    $('#message').append($('<li class="chatarea__message messages--send messages--send-margin-top"></li>').html(`<p>${msg.username}:</p> <p class='messages__text'>${msg.msg}</p><p class='flex-end'>${msg.time}</p>`));
                 }
             });
 
@@ -179,9 +183,9 @@
                 for (let i = 0; i < data.length; i++) {
                     let date = new Date(Date.parse(data[i].date_time))
                     if (data[i].user_name == username) {
-                        $('#message-history').append($('<li class="chatarea__message messages--send messages--send-margin-top"></li>').html(`<p>${data[i].user_name}:</p> <p class='messages__text'>${data[i].chat_text}</p> <p class='flex-end'>${getTime(date)}</p>`))
+                        $('#message-history').append($('<li class="chatarea__message messages--received messages--send-margin-top"></li>').html(`<p>${data[i].user_name}:</p> <p class='messages__text'>${data[i].chat_text}</p> <p class='flex-end'>${getTime(date)}</p>`))
                     } else {
-                        $('#message-history').append($('<li class="chatarea__message messages--received messages--send-margin-top"></li>').html(`<p>${data[i].user_name}: <p class='messages__text'>${data[i].chat_text}</p> <p class='flex-end'>${getTime(date)}</p>`))
+                        $('#message-history').append($('<li class="chatarea__message messages--send messages--send-margin-top"></li>').html(`<p>${data[i].user_name}: <p class='messages__text'>${data[i].chat_text}</p> <p class='flex-end'>${getTime(date)}</p>`))
                     }
                 }
             });
