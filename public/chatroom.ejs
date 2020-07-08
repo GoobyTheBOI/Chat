@@ -165,11 +165,11 @@
                 if (time.getMinutes() < 10) {
                     minute = `0${time.getMinutes()}`;
                 }
-                if(time.getHours() > 10){
+                if(time.getHours() >= 10){
                     hour = time.getHours();
                 }
 
-                if (time.getMinutes() > 10) {
+                if (time.getMinutes() >= 10) {
                     minute = time.getMinutes();
                 }
                 return `${hour}:${minute}`
